@@ -46,7 +46,7 @@ class ErpApplicationTests {
 
     @Test
     void test2() {
-        List<String> saqByLikeCname = saqMapper.getSAQByLikeCname("员");
+        List<String> saqByLikeCname = saqMapper.getSAQByLikeCname("测");
         System.out.println(saqByLikeCname);
     }
 
