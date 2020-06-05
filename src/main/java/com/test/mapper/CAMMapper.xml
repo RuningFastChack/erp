@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.test.dao.CAMMapper">
+    <resultMap type="com.test.entity.CompanyAccountManagement" id="ResultCAM">
+        <id column="cam_id" property="camId"/>
+        <result column="cam_account" property="camAccount"/>
+        <result column="cam_email" property="camEmail"/>
+        <result column="cam_password" property="camPassword"/>
+        <result column="cam_staff_id" property="camStaffId"/>
+        <result column="cam_root" property="camRoot"/>
+    </resultMap>
+
+    <select id="getLogin" parameterType="string" resultType="string">
+        select cam_password from company_account_management where cam_account=#{cam_account};
+    </select>
+    <select id="getCheckEmail" parameterType="string" resultType="string">
+        select cam_email from company_account_management where cam_account=#{cam_account};
+    </select>
+    <insert id="LogAdd" useGeneratedKeys="true" keyProperty="camId" parameterType="com.test.entity.CompanyAccountManagement">
+        insert into company_account_management values (null,#{camAccount},#{camEmail},#{camPassword},#{camStaffId},#{camRoot})
+    </insert>
+    <delete id="LogDeleteById" parameterType="int">
+        delete from company_account_management where cam_id=#{cam_id}
+    </delete>
+    <select id="getCAMByID" parameterType="int" resultType="int">
+        select * from company_account_management where cam_id=#{cam_id};
+    </select>
+    <update id="StaUpdateByCamAccount" parameterType="com.test.entity.CompanyAccountManagement">
+        update company_account_management set cam_password=#{camPassword}where cam_account=#{camAccount}
+    </update>
+</mapper>

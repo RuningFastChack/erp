@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.test.dao.SADMapper">
+    <resultMap id="ResultSAD" type="com.test.entity.StaffsApplyDeploy">
+        <id column="sad_id" property="sadId"></id>
+        <result column="sad_number" property="sadNumber"></result>
+        <result column="sad_name" property="sadName"></result>
+        <result column="sad_apply_date" property="sadApplyDate"></result>
+        <result column="sad_lose_date" property="sadLoseDate"></result>
+        <result column="sad_old_dep" property="sadOldDep"></result>
+        <result column="sad_old_pos" property="sadOldPos"></result>
+        <result column="sad_old_salary" property="sadOldSalary"></result>
+        <result column="sad_entry_date" property="sadEntryDate"></result>
+        <result column="sad_new_dep_id" property="sadNewDepId"></result>
+        <result column="sad_new_pow_id" property="sadNewPowId"></result>
+        <result column="sad_new_salary" property="sadNewSalary"></result>
+        <result column="sad_particulars" property="sadParticulars"></result>
+        <result column="sad_class" property="sadClass"></result>
+        <result column="sad_pass" property="sadPass"></result>
+        <result column="sad_pass_date" property="sadPassData"></result>
+    </resultMap>
+
+    <select id="getDeployAll" resultMap="ResultSAD">
+        select * from staffs_apply_deploy
+    </select>
+</mapper>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.test.dao.SJQMapper">
+    <resultMap id="resultSJQ" type="com.test.entity.StaffJobQuti">
+        <id column="sjq_id" property="sjqId"></id>
+        <result column="sjq_number" property="sjqNumber"></result>
+        <result column="sjq_staff_id" property="sjqStaffId"></result>
+        <result column="sjq_pos" property="sjqPos"></result>
+        <result column="sjq_dep" property="sjqDep"></result>
+        <result column="sjq_entry_date" property="sjqEntryDate"></result>
+        <result column="sjq_dim_date" property="sjqDimDate"></result>
+        <result column="sjq_class" property="sjqClass"></result>
+        <result column="sjq_cause" property="sjqCause"></result>
+        <result column="sjq_account" property="sjqAccount"></result>
+        <result column="sjq_password" property="sjqPassword"></result>
+        <result column="sjq_hidden" property="sjqHidden"></result>
+    </resultMap>
+    <select id="getAll" resultMap="resultSJQ">
+        select * from staff_job_quit
+    </select>
+</mapper>

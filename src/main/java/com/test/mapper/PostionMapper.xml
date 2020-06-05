@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.test.dao.PostionMapper">
+
+    <resultMap id="ResultPostion" type="com.test.entity.Postion">
+        <id column="pos_id" property="posId"></id>
+        <result column="pos_name" property="posName"></result>
+        <result column="pos_salary" property="posSalary"></result>
+    </resultMap>
+
+    <select id="getPostionAll" resultMap="ResultPostion">
+        select * from postion
+    </select>
+
+    <select id="getById" resultMap="ResultPostion" parameterType="Int">
+        select * from postion where pos_id=#{id}
+    </select>
+</mapper>

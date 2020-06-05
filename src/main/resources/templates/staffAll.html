@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<table>
+
+    <tr th:each="fs:${msg}" >
+        <td>
+            <form th:action="@{/staff/StaffUpdate}">
+        <input  th:value="${fs.sId}" name="sId"></input>
+        <input  th:value="${fs.sJobId}" name="sJobId"></input>
+        <input  th:value="${fs.sCname}" name="sCname"></input>
+        <input  th:value="${fs.sEname}" name="sEname"></input>
+        <input  th:value="${fs.sCertificateClass}" name="sCertificateClass"></input>
+        <input  th:value="${fs.sCertificateNumber}" name="sCertificateNumber"></input>
+        <input  th:value="${fs.sSocialNumber}" name="sSocialNumber"></input>
+        <input  th:value="${fs.sBankNumber}" name="sBankNumber"></input>
+        <input  th:value="${fs.sSex}" name="sSex"></input>
+        <input  th:value="${fs.sData}" name="sData"></input>
+        <input  th:value="${fs.sPhoneNumber}" name="sPhoneNumber"></input>
+        <input  th:value="${fs.sNativePlace}" name="sNativePlace"></input>
+        <input  th:value="${fs.sEducation}" name="sEducation"></input>
+        <input  th:value="${fs.sGraduateSchool}" name="sGraduateSchool"></input>
+        <input  th:value="${fs.sMajor}" name="sMajor"></input>
+        <input  th:value="${fs.sPolitics}" name="sPolitics"></input>
+        <input  th:value="${fs.sReligion}" name="sReligion"></input>
+        <input  th:value="${fs.sRegistered}" name="sRegistered"></input>
+        <input  th:value="${fs.sWeight}" name="sWeight"></input>
+        <input  th:value="${fs.sHeight}" name="sHeight"></input>
+        <input  th:value="${fs.sEmail}" name="sEmail"></input>
+        <input  th:value="${fs.sMarriage}" name="sMarriage"></input>
+        <input  th:value="${fs.sNation}" name="sNation"></input>
+        <input  th:value="${fs.sAddress}" name="sAddress"></input>
+        <input  th:value="${fs.sVision}" name="sVision"></input>
+        <input th:value="${fs.sHealth}" name="sHealth"></input>
+        <input  th:value="${fs.sPhoto}" name="sPhoto"></input>
+        <input  >
+            <select name="sPass">
+                <option th:text="${fs.sPass}"  th:value="${fs.sPass}"></option>
+                <option th:text="是" th:value="是"></option>
+                <option th:text="否" th:value="否"></option>
+            </select>
+        </input>
+        <input type="submit" value="tijiap">
+            </form>
+        </td>
+    </tr>
+</table>
+</body>
+</html>

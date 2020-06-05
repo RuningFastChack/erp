@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>管理页面</title>
+    <link rel="stylesheet" media="all" th:href="@{../static/css/layui.css}">
+    <link href="css/bootstrap.css">
+    <link href="css/bootstrap-theme.css">
+    <script th:src="@{../static/jquery.min.js}"></script>
+    <script th:src="@{../static/layui.js}"></script>
+    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <div class="layui-layout layui-layout-admin">
+        <div class="layui-header">
+            <div class="layui-logo">员工系统</div>
+            <!-- 头部区域（可配合layui已有的水平导航） -->
+            <ul class="layui-nav layui-layout-left">
+                <li class="layui-nav-item"><a href="">控制台</a></li>
+                <li class="layui-nav-item"><a href="">商品管理</a></li>
+                <li class="layui-nav-item"><a href="">用户</a></li>
+                <li class="layui-nav-item">
+                    <a href="javascript:;">其它系统</a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="">邮件管理</a></dd>
+                        <dd><a href="">消息管理</a></dd>
+                        <dd><a href="">授权管理</a></dd>
+                    </dl>
+                </li>
+            </ul>
+            <ul class="layui-nav layui-layout-right">
+                <li class="layui-nav-item">
+                    <a href="javascript:;">
+                        <img src="http://t.cn/RCzsdCq" class="layui-nav-img">
+                        贤心
+                    </a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="">基本资料</a></dd>
+                        <dd><a href="">安全设置</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item"><a href="/login/hello">退了</a></li>
+            </ul>
+        </div>
+
+        <div class="layui-side layui-bg-black">
+            <div class="layui-side-scroll">
+                <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
+                <ul class="layui-nav layui-nav-tree"  lay-filter="test">
+                    <li class="layui-nav-item layui-nav-itemed">
+                        <a class="" href="javascript:;">人事管理</a>
+                        <dl class="layui-nav-child">
+                            <dd>
+                                <a class="" href="javascript:;">人事管理</a>
+                                <dl class="layui-nav-child">
+                                    <dd><a href="javascript:;">新建人员</a></dd>
+                                    <dd><a href="javascript:;">在职人员</a></dd>
+                                    <dd><a href="javascript:;">离职人员</a></dd>
+                                </dl>
+                            </dd>
+                            <dd>
+                                <a class="" href="javascript:;">人事调动</a>
+                                <dl class="layui-nav-child">
+                                    <dd><a href="javascript:;">新员工入职</a></dd>
+                                    <dd><a href="javascript:;">劳务合同列表</a></dd>
+                                    <dd><a href="javascript:;">离职人员列表</a></dd>
+                                </dl>
+                            </dd>
+                        </dl>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="layui-body">
+            <div style="width: 65%">
+                <table th:each="li:${list}" border="1px" class="layui-table">
+                    <tbody>
+                        <tr>
+                            <td>姓名</td>
+                            <td th:text="${li.staff.SCname}"></td>
+                            <td>英文名</td>
+                            <td th:text="${li.staff.SEname}"></td>
+                            <td rowspan="6" colspan="2">
+                                <img th:src="${li.staff.SPhoto}" th:value="照片">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>身份类型</td>
+                            <td th:text="${li.staff.SCertificateClass}"></td>
+                            <td>身份号码</td>
+                            <td th:text="${li.staff.SCertificateNumber}"></td>
+                        </tr>
+                        <tr>
+                            <td>社保卡号</td>
+                            <td th:text="${li.staff.SSocialNumber}"></td>
+                            <td>银行卡号</td>
+                            <td th:text="${li.staff.SBankNumber}"></td>
+                        </tr>
+                        <tr>
+                            <td>性别</td>
+                            <td th:text="${li.staff.SSex}"></td>
+                            <td>出生日期</td>
+                            <td th:text="${li.staff.SData}"></td>
+                        </tr>
+                        <tr>
+                            <td>手机号码</td>
+                            <td th:text="${li.staff.SPhoneNumber}"></td>
+                            <td>学历</td>
+                            <td th:text="${li.staff.SEducation}"></td>
+                        </tr>
+                        <tr>
+                            <td>籍贯</td>
+                            <td th:text="${li.staff.SNativePlace}"></td>
+                            <td>政治面貌</td>
+                            <td th:text="${li.staff.SPolitics}"></td>
+                        </tr>
+                        <tr>
+                            <td>毕业院校</td>
+                            <td th:text="${li.staff.SGraduateSchool}"></td>
+                            <td>专业(毕业专业)</td>
+                            <td th:text="${li.staff.SMajor}"></td>
+                            <td>合同类型</td>
+                            <td th:text="${li.staffLaborContract.slcClass}"></td>
+                        </tr>
+                        <tr>
+                            <td>民族</td>
+                            <td th:text="${li.staff.SNation}"></td>
+                            <td>现居住地（省市）</td>
+                            <td th:text="${li.staff.SAddress}"></td>
+                            <td>户口性质</td>
+                            <td th:text="${li.staff.SRegistered}"></td>
+                        </tr>
+                        <tr>
+                            <td>部门</td>
+                            <td th:text="${li.department.depName}"></td>
+                            <td>职位</td>
+                            <td th:text="${li.postion.posName}"></td>
+                            <td>入职时间</td>
+                            <td>
+                                <time  th:text="${li.staffLaborContract.efficaciousDate}"></time>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>视力</td>
+                            <td th:text="${li.staff.SVision}"></td>
+                            <td>体重（KG）</td>
+                            <td th:text="${li.staff.SWeight}"></td>
+                            <td>身高（cm）</td>
+                            <td th:text="${li.staff.SHeight}"></td>
+                        </tr>
+                        <tr>
+                            <td>员工分类</td>
+                            <td th:text="${li.sjcClass}"></td>
+                            <td>电子邮件（非常总要）</td>
+                            <td th:text="${li.staff.SEmail}"></td>
+                            <td>合同性质</td>
+                            <td th:text="${li.staffLaborContract.slcName}"></td>
+                        </tr>
+                        <tr>
+                            <td>宗教信仰（有无）/（具体）</td>
+                            <td th:text="${li.staff.SReligion}"></td>
+                            <td>健康状态（有无疾病史）</td>
+                            <td th:text="${li.staff.SHealth}"></td>
+                            <td>婚姻状况（已/未）</td>
+                            <td th:text="${li.staff.SMarriage}"></td>
+                        </tr>
+                        <tr style="border: 0px">
+                            <td colspan="6" align="center">
+                                <a th:href="@{../sjc/deleteSJC(sjcId=${li.sjcId})}" class="layui-btn layui-btn-danger" target="_blank">删除</a>
+                                <div>
+                                    <div class="col-md-6">
+                                        <strong>当前第 [[${pageInfo.pageNum}]]页,共 [[${pageInfo.pages}]] 页.一共 [[${pageInfo.total}]] 条记录
+                                        </strong>
+                                    </div>
+                                    <div th:if="${pageInfo.hasPreviousPage}">
+                                        <a th:href="@{/sjc/test(pageNum=1)}" class="layui-btn layui-btn-xs layui-btn-normal">首页</a>
+                                    </div>
+                                    <div th:if="${pageInfo.hasPreviousPage}">
+                                        <a th:href="@{/sjc/test(pageNum=${pageInfo.prePage})}" class="layui-btn layui-btn-normal layui-btn-sm">
+                                            <i class="layui-icon"></i>
+                                        </a>
+                                    </div>
+                                    <!--遍历条数-->
+                                    <div th:each="nav:${pageInfo.navigatepageNums}">
+                                        <a th:href="@{/sjc/test(pageNum=${nav})}" th:text="${nav}" th:if="${nav != pageInfo.pageNum}"></a>
+                                        <span style="font-weight: bold;background: #6faed9;" th:if="${nav == pageInfo.pageNum}" th:text="${nav}" ></span>
+                                    </div>
+                                    <div th:if="${pageInfo.hasNextPage}">
+                                        <a th:href="@{/sjc/test(pageNum=${pageInfo.nextPage})}" class="layui-btn layui-btn-normal layui-btn-sm">
+                                            <i class="layui-icon"></i>
+                                        </a>
+                                    </div>
+                                    <div>
+                                        <a th:href="@{/sjc/test(pageNum=${pageInfo.pages})}" class="layui-btn layui-btn-xs layui-btn-normal">尾页</a>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="layui-footer">
+            <!-- 底部固定区域 -->
+            © 求毕业
+        </div>
+    </div>
+<script>
+    //JavaScript代码区域
+    layui.use('element', function(){
+        var element = layui.element;
+    });
+</script>
+</body>
+</html>

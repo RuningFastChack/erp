@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.test.dao.SLCMapper">
+
+    <resultMap id="resultSLC" type="com.test.entity.StaffLaborContract">
+        <id column="slc_id" property="slcId"></id>
+        <result column="slc_number" property="slcNumber"></result>
+        <result column="slc_name" property="slcName"></result>
+        <result column="slc_sign_date" property="slcSignDate"></result>
+        <result column="slc_lose_date" property="slcLoseDate"></result>
+        <result column="slc_efficacious_date" property="slcEfficaciousDate"></result>
+        <result column="slc_class" property="slcClass"></result>
+        <collection property="staff" column="slc_staff_id" select="com.test.dao.StaffMapper.getByID"></collection>
+    </resultMap>
+    <select id="getAll" resultMap="resultSLC">
+        select * from staff_labor_contract
+    </select>
+
+    <select id="getById" resultMap="resultSLC" parameterType="Int">
+        select date_format(slc_sign_date, '%Y-%m-%d %H:%i:%s') 'slc_sign_date',
+        date_format(slc_efficacious_date, '%Y-%m-%d %H:%i:%s') 'slc_efficacious_date' ,
+        date_format(slc_lose_date, '%Y-%m-%d %H:%i:%s') 'slc_lose_date', slc_number,
+        slc_name,slc_class,slc_id
+        from staff_labor_contract where slc_id=#{id}
+    </select>
+
+    <select id="getByNumber" resultMap="resultSLC">
+        select slc_number from staff_labor_contract
+    </select>
+
+    <insert id="addSLC" parameterType="com.test.entity.StaffLaborContract">
+        insert into staff_labor_contract values (null,#{slcNumber},#{slcName},#{slcSignDate},#{slcEfficaciousDate},#{slcLoseDate},#{slcStaffId},#{slcClass})
+    </insert>
+    
+    <delete id="deleteSLC" parameterType="Int">
+         delete from  staff_labor_contract where slc_id=#{slcId}
+    </delete>
+</mapper>

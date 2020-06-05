@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.test.dao.DepartmentMapper">
+    <resultMap id="ResultDepartment" type="com.test.entity.Department">
+        <id column="dep_id" property="depId"></id>
+        <result column="dep_name" property="depName"></result>
+    </resultMap>
+
+    <select id="getAll" resultMap="ResultDepartment">
+        select * from department
+    </select>
+
+    <select id="getById" resultMap="ResultDepartment" parameterType="Int">
+        select * from department where dep_id=#{id}
+    </select>
+</mapper>

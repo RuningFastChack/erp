@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <table>
+        <tr>
+            <th>合同编号</th>
+            <th>合同名称</th>
+            <th>员工编号</th>
+            <th>员工名称</th>
+            <th>签约时间</th>
+            <th>生效时间</th>
+            <th>失效时间</th>
+        </tr>
+        <tr th:each="li:${list}">
+            <td th:text="${li.slcNumber}"></td>
+            <td th:text="${li.slcName}"></td>
+            <td th:text="${li.staff.SJobId}"></td>
+            <td th:text="${li.staff.SCname}"></td>
+            <td th:text="${li.slcSignDate}"></td>
+            <td th:text="${li.slcEfficaciousDate}"></td>
+            <td th:text="${li.slcLoseDate}"></td>
+        </tr>
+    </table>
+</body>
+</html>

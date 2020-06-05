@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.test.dao.SAQMapper">
+    <resultMap id="resultSAQ" type="com.test.entity.StaffApplyQuit">
+        <id column="saq_id" property="saqId"></id>
+        <result column="saq_number" property="saqNumber"></result>
+        <result column="saq_title" property="saqTitle"></result>
+        <result column="saq_name_id" property="saqNameId"></result>
+        <result column="saq_apply_date" property="saqApplyDate"></result>
+        <result column="saq_lose_date" property="saqLoseDate"></result>
+        <result column="saq_efficacious_date" property="saqEfficaciousDate"></result>
+        <result column="saq_class" property="saqClass"></result>
+        <result column="saq_particulars" property="saqParticulars"></result>
+        <result column="saq_now_dep" property="saqNowDep"></result>
+        <result column="saq_now_pos" property="saqNowPos"></result>
+        <result column="saq_entry_date" property="saqEntryDate"></result>
+        <result column="saq_staff_class" property="saqStaffClass"></result>
+        <result column="saq_pass" property="saqPass"></result>
+        <collection property="staff" column="saq_name_id" select="com.test.dao.StaffMapper.getByID"></collection>
+    </resultMap>
+    <insert id="SAQAddByID" parameterType="com.test.entity.StaffApplyQuit">
+        insert into staff_apply_quit values (null,#{saqNumber},#{saqTitle},#{saqNameId},#{saqApplyDate},#{saqLoseDate},#{saqEfficaciousDate}
+        ,#{saqClass},#{saqParticulars},#{saqNowDep},#{saqNowPos},#{saqEntryDate},#{saqStaffClass},#{saqPass})
+    </insert>
+    <update id="SAQUpdateByID" parameterType="com.test.entity.StaffApplyQuit">
+        update staff_apply_quit set saq_number=#{saqNumber},saq_title=#{saqTitle},saq_name_id=#{saqNameId},
+        saq_apply_date=#{saqApplyDate},saq_lose_date=#{saqLoseDate},saq_efficacious_date=#{saqEfficaciousDate},
+        saq_class=#{saqClass},saq_particulars=#{saqParticulars},saq_now_dep=#{saqNowDep},saq_now_pos=#{saqNowPos},
+        saq_entry_date=#{saqEntryDate},saq_staff_class=#{saqStaffClass},saq_pass=#{saqPass}
+        where saq_id=#{saqId}
+    </update>
+    <delete id="SAQDeleteById" parameterType="int">
+        delete from staff_apply_quit where saq_id=#{saq_id}
+    </delete>
+    <select id="getAll" resultMap="resultSAQ">
+        select * from staff_apply_quit
+    </select>
+    <select id="getSAQById" resultType="com.test.entity.StaffApplyQuit">
+        select * from staff_apply_quit where saq_id=#{saq_id}
+    </select>
+    <select id="getSAQByLikeCname" resultMap="resultSAQ" parameterType="string">
+        select * from staff_apply_quit saq,staff sta where saq.saq_name_id=sta.s_id and sta.s_cname like "%"#{CName}"%";
+    </select>
+    <select id="getSAQByNumber" resultMap="resultSAQ" parameterType="string">
+        select * from staff_apply_quit where saq_number=#{saq_number}
+    </select>
+</mapper>

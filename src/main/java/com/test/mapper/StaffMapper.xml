@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.test.dao.StaffMapper">
+    <resultMap id="ResultStaff" type="com.test.entity.Staff">
+        <id column="s_id" property="sId"></id>
+        <result column="s_job_id" property="sJobId"></result>
+        <result column="s_cname" property="sCname"></result>
+        <result column="s_ename" property="sEname"></result>
+        <result column="s_certificate_class" property="sCertificateClass"></result>
+        <result column="s_certificate_number" property="sCertificateNumber"></result>
+        <result column="s_social_number" property="sSocialNumber"></result>
+        <result column="s_bank_number" property="sBankNumber"></result>
+        <result column="s_sex" property="sSex"></result>
+        <result column="s_date" property="sData"></result>
+        <result column="s_phone_number" property="sPhoneNumber"></result>
+        <result column="s_native_place" property="sNativePlace"></result>
+        <result column="s_education" property="sEducation"></result>
+        <result column="s_graduate_school" property="sGraduateSchool"></result>
+        <result column="s_major" property="sMajor"></result>
+        <result column="s_politics" property="sPolitics"></result>
+        <result column="s_religion" property="sReligion"></result>
+        <result column="s_registered" property="sRegistered"></result>
+        <result column="s_weight" property="sWeight"></result>
+        <result column="s_height" property="sHeight"></result>
+        <result column="s_email" property="sEmail"></result>
+        <result column="s_marriage" property="sMarriage"></result>
+        <result column="s_nation" property="sNation"></result>
+        <result column="s_address" property="sAddress"></result>
+        <result column="s_vision" property="sVision"></result>
+        <result column="s_health" property="sHealth"></result>
+        <result column="s_photo" property="sPhoto"></result>
+        <result column="s_pass" property="sPass"></result>
+        <result column="s_dep" property="sDep"></result>
+        <result column="s_pos" property="sPos"></result>
+    </resultMap>
+    <!--    全查询-->
+    <select id="getAll" resultMap="ResultStaff" >
+        select * from staff
+    </select>
+    <!--    根据工号查询-->
+    <select id="getByJobID" resultMap="ResultStaff" parameterType="string">
+        select * from staff where s_job_id=#{s_job_id}
+    </select>
+    <!--    删除-->
+    <delete id="StaDeleteByID" parameterType="int">
+        delete from staff where s_id=#{s_id}
+    </delete>
+    <!--   全修改-->
+    <update id="StaUpdateByID" parameterType="com.test.entity.Staff">
+        update staff set
+        s_job_id=#{sJobId},s_cname=#{sCname},s_ename=#{sEname},
+        s_certificate_class=#{sCertificateClass},s_certificate_number=#{sCertificateNumber},s_social_number=#{sSocialNumber},
+        s_bank_number=#{sBankNumber},s_sex=#{sSex},s_date=#{sData},s_phone_number=#{sPhoneNumber},
+        s_native_place=#{sNativePlace},s_education=#{sEducation},s_graduate_school=#{sGraduateSchool},
+        s_major=#{sMajor},s_politics=#{sPolitics},s_religion=#{sReligion},s_registered=#{sRegistered},
+        s_weight=#{sWeight},s_height=#{sHeight},s_email=#{sEmail},s_marriage=#{sMarriage},s_nation=#{sNation},
+        s_address=#{sAddress},s_vision=#{sVision},s_health=#{sHealth},s_photo=#{sPhoto},
+        s_pass=#{sPass},s_dep=#{sDep},s_pos=#{sPos}
+        where s_id=#{sId}
+    </update>
+    <!--    添加-->
+    <insert id="StaAddByID" useGeneratedKeys="true" keyProperty="sId" parameterType="com.test.entity.Staff">
+        insert into staff values (null,#{sJobId},#{sCname},#{sEname},#{sCertificateClass},#{sCertificateNumber},#{sSocialNumber},
+    #{sBankNumber},#{sSex},#{sData},#{sPhoneNumber},#{sNativePlace},#{sEducation},#{sGraduateSchool},
+    #{sMajor},#{sPolitics},#{sReligion},#{sRegistered},#{sWeight},#{sHeight},#{sEmail},#{sMarriage},#{sNation},
+    #{sAddress},#{sVision},#{sHealth},#{sPhoto},#{sPass},#{sDep},#{sPos})
+    </insert>
+    <!--    根据中文名字查询-->
+    <select id="getByCName" resultMap="ResultStaff" parameterType="string">
+        select * from staff where s_cname like "%"#{s_cname}"%"
+    </select>
+    <!--    根据英文文名字查询-->
+    <select id="getByEName" resultMap="ResultStaff" parameterType="string">
+        select * from staff where s_ename like "%"#{s_ename}"%"
+    </select>
+    <!--    单查询-->
+    <select id="getByID" resultMap="ResultStaff" parameterType="Int">
+        select * from staff where s_id=#{s_id}
+    </select>
+</mapper>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" media="all" th:href="@{../static/css/layui.css}">
+    <link href="css/bootstrap.css">
+    <link href="css/bootstrap-theme.css">
+    <script th:src="@{../static/jquery.min.js}"></script>
+    <script th:src="@{../static/layui.js}"></script>
+    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script>
+        layui.use('form', function(){
+            var form = layui.form; //只有执行了这一步，部分表单元素才会自动修饰成功
+            form.render();
+        });
+    </script>
+</head>
+<body>
+    <form class="layui-form" action="/sjc/add" method="post" lay-filter="example">
+        <div class="layui-form-item">
+            <label class="layui-form-label">编号</label>
+            <div class="layui-input-block">
+                <input type="text" th:value="${sjcNumber}" name="sjcNumber" lay-verify="title" autocomplete="off" readonly class="layui-input">
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">员工</label>
+            <div class="layui-input-block">
+                <select name="sjcStaffId" lay-filter="aihao">
+                    <option th:each="sta :${staff}" name="sjcStaffId" th:value="${sta.SId}" th:text="${sta.SCname}"></option>
+                </select>
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">部门</label>
+            <div class="layui-input-block">
+                <select name="sjcDepId" lay-filter="aihao">
+                    <option th:each="dep :${department}" name="sjcDepId" th:value="${dep.depId}" th:text="${dep.depName}"></option>
+                </select>
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">职位</label>
+            <div class="layui-input-block">
+                <select name="sjcPosId" lay-filter="aihao">
+                    <option th:each="pos :${postion}" name="sjcPosId" th:value="${pos.posId}" th:text="${pos.posName}"></option>
+                </select>
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">劳务合同</label>
+            <div class="layui-input-block">
+                <select name="slcClass" lay-filter="aihao">
+                    <option name="slcClass" value="临时" checked>临时</option>
+                    <option name="slcClass" value="正式">正式</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <div class="layui-input-block">
+                <button type="submit" class="layui-btn">立即提交</button>
+            </div>
+        </div>
+    </form>
+</body>
+</html>

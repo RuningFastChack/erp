@@ -1,0 +1,46 @@
+---
+logging:
+  level:
+    com:
+      lgy:
+        dao: DEBUG
+  config: classpath:logback.xml
+mybatis:
+  configLocation:
+    map-underscore-to-camel-case: true
+  type-aliases-package: com.test.entity
+  mapper-locations: classpath*:com/test/mapper/*.xml
+  config-location: classpath:mybatis/mybatis-config.xml
+
+spring:
+  from: 903960669@qq.com
+  mail:
+    username: 903960669@qq.com
+    password: tnfsrdewnyyvbcab
+    host: smtp.qq.com
+    properties:
+      mail:
+        smtp:
+          ssl:
+            enable: true
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    password: Love.903960669
+    url: "jdbc:mysql://47.106.184.200:3306/myerp?characterEncoding=UTF-8&useSSL=false&useJDBCCompliantTimezoneShift=true"
+    username: root
+  mvc:
+    static-path-pattern: /static/**
+    view:
+      prefix: /
+      suffix: .html
+  resources:
+    chain:
+      strategy:
+        content:
+          enabled: true
+          paths: /**
+  redis:
+    host: 47.106.184.200
+    port: 6379
+    password: Love.903960669
+    timeout: 3000

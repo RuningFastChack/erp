@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.test.dao.SJCMapper">
+    <resultMap id="resultSJC" type="com.test.entity.StaffJobControl">
+        <id column="sjc_id" property="sjcId"></id>
+        <result column="sjc_number" property="sjcNumber"></result>
+        <result column="sjc_now_salary" property="sjcNowSalary"></result>
+        <result column="sjc_class" property="sjcClass"></result>
+        <collection property="staff" column="sjc_staff_id" select="com.test.dao.StaffMapper.getByID"></collection>
+        <collection property="postion" column="sjc_pos_id"  select="com.test.dao.PostionMapper.getById"></collection>
+        <collection property="department" column="sjc_dep_id"  select="com.test.dao.DepartmentMapper.getById"></collection>
+        <collection property="staffLaborContract" column="sjc_slc_id"  select="com.test.dao.SLCMapper.getById"></collection>
+    </resultMap>
+
+    <resultMap id="resultSJC2" type="com.test.entity.StaffJobControl">
+        <result column="sjc_number" property="sjcNumber"></result>
+    </resultMap>
+    <select id="getAll" resultMap="resultSJC">
+        select * from staff_job_control
+    </select>
+
+    <select id="getByNumber" resultMap="resultSJC2">
+        select sjc_number from staff_job_control
+    </select>
+
+    <select id="getByStaffId" resultMap="resultSJC" parameterType="Int">
+        select * from staff_job_control where sjc_staff_id=#{sjcStaffId}
+    </select>
+
+    <delete id="deleteSJC" parameterType="Int">
+        delete from staff_job_control where sjc_id=#{sjcId}
+    </delete>
+
+    <insert id="addSJC" parameterType="com.test.entity.StaffJobControl">
+        insert into staff_job_control values (null,#{sjcNumber},#{sjcStaffId},#{sjcPosId},#{sjcDepId},#{sjcSlcId},#{sjcNowSalary},#{sjcClass})
+    </insert>
+</mapper>
